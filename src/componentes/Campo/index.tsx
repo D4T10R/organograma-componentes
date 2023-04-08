@@ -1,6 +1,15 @@
 import './campo.css'
 
-const Campo = ({ type = 'text', label, placeholder, valor, aoAlterado, obrigatorio = false }) => {
+interface CampoTextoProps {
+    aoAlterado: (valor: string) => void
+    placeholderModficado: string
+    label: string
+    valor: string
+    type: string
+    obrigatorio: boolean
+}
+
+const Campo = ({ aoAlterado, label, obrigatorio, placeholderModficado, type, valor }: CampoTextoProps) => {
     return (
         <div className={`campo campo-${type}`}>
             <label>{label}</label>
@@ -9,7 +18,7 @@ const Campo = ({ type = 'text', label, placeholder, valor, aoAlterado, obrigator
                 value={valor} 
                 onChange={evento => aoAlterado(evento.target.value)} 
                 required={obrigatorio} 
-                placeholder={placeholder}
+                placeholder={placeholderModficado}
             /> 
         </div>
     )
